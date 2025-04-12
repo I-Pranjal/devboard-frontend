@@ -5,7 +5,7 @@ import { GoogleGenAI } from "@google/genai";
 
 
 const geminiAPI = process.env.GEMINI_API ;
-const ai = new GoogleGenAI({ apiKey: GEMINI_API });
+const ai = new GoogleGenAI({ apiKey: geminiAPI });
 
 
 const useChat = () => {
