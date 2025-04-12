@@ -17,14 +17,20 @@ const useChat = () => {
     setLoading(true);
 
     try {
-      const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: [userMessage],
-      });
-      const botmessage = { role: "assistant", content: response.text };
-      setMessages((prev) => [...prev, botmessage]);
-    } catch (err) {
-      console.error("ChatGPT error:", err);
+      const response = await axios.get('https://devboard-backend-8yr8.onrender.com/api/chat', {
+        body : {
+          message: userMessage,
+        }
+      }); 
+      const botMessage = response.data;
+      setMessages((prev) => [...prev, botMessage]);
+    }
+    catch (error) {
+      console.error("Error sending message:", error);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Error: " + error.message },
+      ]);
     } finally {
       setLoading(false);
     }
