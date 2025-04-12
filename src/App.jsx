@@ -3,7 +3,7 @@ import React from 'react';
 import DashboardLayout from './components/layout/DashboardLayout';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProjectTracker from './features/project/projectmanager';
-import TaskManager from './features/tasks/taskmanager';
+import TaskManager from './features/tasks/Taskmanager';
 import SnippetManager from './features/snippets/snippetmanager';
 import BrainstormChat from './features/brainstorm/chat';
 import Dashboard from './features/dashboard/dashboard';
