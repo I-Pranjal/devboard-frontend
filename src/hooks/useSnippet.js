@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = 'http://localhost:5000/api/snippets'
+const API = process.env.BACKEND_URL + '/api/snippets'; 
 
 
 export default function useSnippets() {

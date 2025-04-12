@@ -4,7 +4,9 @@ import axios from "axios";
 import { GoogleGenAI } from "@google/genai";
 
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyAaXv2NuLle9MnBzZixeSEj3fOuORUUT48" });
+const geminiAPI = process.env.GEMINI_API ;
+const ai = new GoogleGenAI({ apiKey: GEMINI_API });
+
 
 const useChat = () => {
   const [messages, setMessages] = useState([]);

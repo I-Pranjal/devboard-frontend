@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useUser } from "@context/UserContext";
 
-const API  = 'http://localhost:5000/api/user' ;
+const API = process.env.BACKEND_URL + '/api/user'; 
 
 const useAuth = () => {
   const { login, logout } = useUser(); 
