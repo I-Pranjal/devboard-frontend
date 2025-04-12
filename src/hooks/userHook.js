@@ -1,6 +1,6 @@
 // hooks/useAuth.js
 import axios from "axios";
-import { useUser } from "@context/UserContext";
+import { useUser } from "@context/userContext";
 
 const API = process.env.BACKEND_URL + '/api/user'; 
 
