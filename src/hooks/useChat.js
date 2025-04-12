@@ -1,11 +1,8 @@
 // useHook.js or useChat.js
 import { useState } from "react";
 import axios from "axios";
-import { GoogleGenAI } from "@google/genai";
 
 
-const geminiAPI = process.env.VITE_GEMINI_API ;
-const ai = new GoogleGenAI({ apiKey: geminiAPI });
 
 
 const useChat = () => {
