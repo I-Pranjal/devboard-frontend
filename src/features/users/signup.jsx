@@ -8,7 +8,6 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@hooks/userHook";
-import { set } from "mongoose";
 
 export default function Signup() {
     const { registerUser } = useAuth();
