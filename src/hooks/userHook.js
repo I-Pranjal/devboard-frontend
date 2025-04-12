@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useUser } from "@context/userContext";
 
-const API = process.env.VITE_BACKEND_URL + '/api/user'; 
+const API =`${import.meta.env.VITE_BACKEND_URL}/api/user`; 
 
 const useAuth = () => {
   const { login, logout } = useUser(); 
