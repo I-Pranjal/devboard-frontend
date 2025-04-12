@@ -12,7 +12,7 @@ const SharedProject = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/projects/shared/${shareId}`)
+    axios.get(`https://devboard-backend-8yr8.onrender.com/api/projects/shared/${shareId}`)
       .then((res) => {
         setProject(res.data);
       })
