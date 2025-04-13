@@ -33,6 +33,9 @@ export default function CollaboratorAccordion({projectId}) {
             console.log("User ID:", user._id);
             console.log("details:", details);
             addCollaborator(projectId, details);
+            alert("Collaborator added successfully!");
+            setDetails(initialDetails); 
+            setIsOpen(false); 
         }
     };
 

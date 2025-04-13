@@ -19,14 +19,12 @@ const ProjectList = ({ projects, deleteProject }) => {
   return (
     <div className="space-y-4">
       {projects.map(project => (
-        <Link to={`/projects/${project._id}`}>
         <ProjectItem
           key={project.id}
           project={project}
           onDelete={deleteProject}
           onStatusChange={handleStatusChange}
           />
-          </Link>
       ))}
     </div>
   )

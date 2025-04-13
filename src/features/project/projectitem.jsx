@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const ProjectItem = ({ project, onDelete, onStatusChange }) => {
     return (
         <div className="border border-gray-700 p-4 rounded-lg shadow-sm dark:bg-gray-600 dark:text-white bg-gray-200 text-black">
@@ -23,18 +25,24 @@ const ProjectItem = ({ project, onDelete, onStatusChange }) => {
                     🔗 View Repo
                 </a>
             )}
-
+            <div className="flex items-center justify-between">    
             <div className="mt-3">
                 <label className="text-sm text-gray-500 dark:text-white mr-2">Status:</label>
                 <select
                     value={project.status}
                     onChange={(e) => onStatusChange(project.id, e.target.value)}
                     className="p-1 rounded bg-gray-800 border border-gray-700 text-sm text-gray-100"
-                >
+                    >
                     <option value="planned">Planned</option>
                     <option value="in progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
+            </div>
+            <Link to={`/projects/${project._id}`}>
+            <button className="bg-green-600 hover:bg-green-700 text-white rounded-md py-1 px-2 text-sm ml-2">
+                View
+            </button>
+            </Link>
             </div>
         </div>
     );
