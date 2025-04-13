@@ -19,7 +19,8 @@ const useChat = () => {
           message: userMessage,
         }
       }); 
-      const botMessage = response.data;
+      const botMessage = response.data ;
+      console.log("Bot response:", botMessage);
       setMessages((prev) => [...prev, botMessage]);
     }
     catch (error) {
