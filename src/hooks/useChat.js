@@ -13,7 +13,7 @@ const useChat = () => {
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const response = await axios.post('https://devboard-backend-8yr8.onrender.com/api/chat', {
           message: userMessage,
         
       }); 
