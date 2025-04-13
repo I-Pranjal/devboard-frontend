@@ -12,15 +12,12 @@ const useChat = () => {
   const sendMessage = async (userMessage) => {
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setLoading(true);
-
     try {
-      const response = await axios.get('https://devboard-backend-8yr8.onrender.com/api/chat', {
-        body : {
+      const response = await axios.post('http://localhost:5000/api/chat', {
           message: userMessage,
-        }
+        
       }); 
-      const botMessage = response.data ;
-      console.log("Bot response:", botMessage);
+      const botMessage = { role:"assistant",  content: response.data} ;
       setMessages((prev) => [...prev, botMessage]);
     }
     catch (error) {
