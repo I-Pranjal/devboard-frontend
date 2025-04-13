@@ -12,6 +12,7 @@ const SharedProject = () => {
   const { user } = useUser();
 
   useEffect(() => {
+    console.log("Share ID:", shareId); // Log the shareId for debugging
     axios.get(`https://devboard-backend-8yr8.onrender.com/api/projects/shared/${shareId}`)
       .then((res) => {
         setProject(res.data);
