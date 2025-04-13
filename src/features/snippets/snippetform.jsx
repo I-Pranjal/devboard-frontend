@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import {
-  Input,
-  Textarea,
   Button,
   Dialog,
-  IconButton,
-  Typography,
-  DialogBody,
   DialogHeader,
+  DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { Plus, X, SaveAll } from "lucide-react";
+import { CirclePlus, SquarePlus, X } from "lucide-react";
 
-const SnippetForm = ({ addSnippet }) => {
+export default function SnippetForm({ addSnippet }) {
+  // Default variables -----------------------------
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(!open);
+  // --------------------------------------------------
+  // Custom variables -----------------------------
   const initialForm = {
     title: "",
     description: "",
@@ -22,10 +23,6 @@ const SnippetForm = ({ addSnippet }) => {
   };
 
   const [form, setForm] = useState(initialForm);
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const handleChange = (e) => {
     setForm({
@@ -42,126 +39,122 @@ const SnippetForm = ({ addSnippet }) => {
       id: Math.random().toString(36).substring(2, 15),
     });
     setForm(initialForm);
-    handleClose();
+    handleOpen();
   };
 
   return (
     <>
       <Button
         onClick={handleOpen}
-        className="flex items-center gap-2 p-2 m-3 bg-amber-300 sm:text-lg text-black w-auto"
+        variant="filled"
+        className="bg-amber-500 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded"
       >
-        <Plus />
-        <p>Add Snippet</p>
+        <span className="flex gap-2 items-center">
+        <CirclePlus />
+        Add Snippet
+        </span>
       </Button>
-
       <Dialog
-        size="md"
         open={open}
-        handler={handleClose}
-        className="p-4 w-full md:w-1/2 m-auto bg-gray-300"
+        handler={handleOpen}
+        className="w-screen p-0 h-screen m-0 rounded-none bg-neutral-300 dark:bg-gray-800"
       >
-        <DialogHeader className="relative m-0 block">
-          <Typography variant="h4" color="blue-gray">
-            Add Code Snippet
-          </Typography>
-          <Typography className="mt-1 font-normal text-gray-600">
-            Store your useful code snippets with tags and language support.
-          </Typography>
-          <IconButton
-            size="sm"
+        <DialogHeader className="flex justify-between items-center dark:bg-gray-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">
+            Add New Snippet
+          </h2>
+          <Button
             variant="text"
-            className="!absolute right-3.5 top-3.5"
-            onClick={handleClose}
+            color="black"
+            onClick={handleOpen}
+            className="mr-1 dark:text-white"
           >
-            <X strokeWidth={3} />
-          </IconButton>
+            <span><X /></span>
+          </Button>
         </DialogHeader>
+        <DialogBody className="p-4 space-y-4">
+          <div className="flex flex-col">
+            <label className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Title
+            </label>
+            <input
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              placeholder="Snippet title"
+              required
+              className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+            />
+          </div>
 
-        <form onSubmit={handleSubmit}>
-          <DialogBody className="space-y-2 pb-3 font-mono">
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-gray-700">
-                Title
-              </label>
-              <Input
-                name="title"
-                value={form.title}
-                onChange={handleChange}
-                placeholder="Snippet title"
-                required
-                className="p-3 rounded-lg"
-              />
-            </div>
+          <div className="flex flex-col">
+            <label className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Language
+            </label>
+            <input
+              name="language"
+              value={form.language}
+              onChange={handleChange}
+              placeholder="eg. JavaScript"
+              className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+            />
+          </div>
 
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-gray-700">
-                Language
-              </label>
-              <Input
-                name="language"
-                value={form.language}
-                onChange={handleChange}
-                placeholder="eg. JavaScript"
-                className="p-3 rounded-lg"
-              />
-            </div>
+          <div className="flex flex-col">
+            <label className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Tags
+            </label>
+            <input
+              name="tags"
+              value={form.tags}
+              onChange={handleChange}
+              placeholder="Comma-separated tags"
+              className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+            />
+          </div>
 
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-gray-700">
-                Tags
-              </label>
-              <Input
-                name="tags"
-                value={form.tags}
-                onChange={handleChange}
-                placeholder="Comma-separated tags"
-                className="p-3 rounded-lg"
-              />
-            </div>
+          <div className="flex flex-col">
+            <label className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Description
+            </label>
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Optional description"
+              className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+              rows={2}
+            />
+          </div>
 
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-gray-700">
-                Description
-              </label>
-              <Textarea
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                placeholder="Optional description"
-                className="p-3 rounded-lg"
-                rows={2}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-gray-700">
-                Snippet
-              </label>
-              <Textarea
-                name="snippet"
-                value={form.snippet}
-                onChange={handleChange}
-                placeholder="Paste your code here..."
-                className="p-3 rounded-lg"
-                rows={6}
-                required
-              />
-            </div>
-          </DialogBody>
-
-          <DialogFooter>
-            <Button
-              type="submit"
-              className="mr-auto bg-green-600 text-white flex text-md gap-2 hover:bg-green-700 shadow-md shadow-black p-3"
-            >
-              <SaveAll strokeWidth={1.25} /> Add Snippet
-            </Button>
-          </DialogFooter>
-        </form>
+          <div className="flex flex-col">
+            <label className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Snippet
+            </label>
+            <textarea
+              name="snippet"
+              value={form.snippet}
+              onChange={handleChange}
+              placeholder="Paste your code here..."
+              className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+              rows={6}
+              required
+            />
+          </div>
+        </DialogBody>
+        <DialogFooter className="flex justify-end">
+          <Button
+            variant="gradient"
+            color="green"
+            onClick={handleSubmit}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            <span className="flex gap-2 items-center">
+            <SquarePlus />
+            Add snippet</span>
+          </Button>
+        </DialogFooter>
       </Dialog>
     </>
   );
-};
-
-export default SnippetForm;
+}
